@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align: center">Add Diagnosis</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>{{ form.name.label }}</p>
+    <p>{{ form.name }}</p>
+    <p>{{ form.explanation.label }}</p>
+    <p>{{ form.explanation }}</p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

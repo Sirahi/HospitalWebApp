@@ -1,0 +1,29 @@
+{%  extends "base.html" %}
+{% block content %}
+    <h1 style="text-align: center">Welcome to Hospital</h1>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+  transition: 0.3s;
+
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+</style>
+{% for doctor in doctors %}
+<div class="card bg-info">
+  <div class="container">
+    <h4><b>{{ doctor.firstname}} {{ doctor.lastname}}</b></h4>
+    <p>{{ doctor.specialization }}</p>
+  </div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}

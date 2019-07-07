@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align: center">Change Doctor</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>{{ form.doc.label }}</p>
+    <p>{{ form.doc }}</p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

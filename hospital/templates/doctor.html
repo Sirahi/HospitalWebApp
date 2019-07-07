@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="text-align: center">Doctor Profile</h1>
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+        transition: 0.3s;
+
+        width: 40%;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+</style>
+<div>
+    <h2>{{ doctor.firstname }} {{ doctor.lastname}} ({{ doctor.specialization }})</h2>
+    <h3>Assigned Patients</h3>
+    {% for patient in patients %}
+    <div class="card bg-info">
+        <div class="container">
+            <h4><b>Patient Name: </b>{{ patient.firstname}} {{ patient.lastname}}</h4>
+
+            {% for diagnosis in patient.diagnoses %}
+            <div class="card bg-success">
+                <uL>
+                    <li>
+                        <h5><b>Diagnosis</b></h5>
+                        <p>{{ diagnosis.name }}</p>
+                    </li>
+                    <li>
+                        <h5><b>Explanation</b></h5>
+                        <p>{{ diagnosis.explanation }}</p>
+                    </li>
+                    <li>
+                        <h5><b>Diagnosed By</b></h5>
+                        <p>{{ diagnosis.diagnosed_by }}</p>
+                    </li>
+                    </uL>
+            </div>
+            {% endfor %}
+        <a href="{{ url_for('add_diagnosis', doc_username=doctor.username, pat_username=patient.username) }}"
+            class="btn btn-success" role="button">Add Diagnoses</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+{% endblock %}

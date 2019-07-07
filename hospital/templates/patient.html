@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+  transition: 0.3s;
+
+  width: 40%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+</style>
+<h1 style="text-align: center">Patient Profile</h1>
+<div>
+    <h2>{{ patient.firstname}} {{ patient.lastname }}</h2>
+    <div class="card bg-info">
+        <div class="container">
+            <h4><b>Assigned Doctor: </b>{{ doctor.firstname }} {{ doctor.lastname }} ({{ doctor.specialization }})</h4>
+            {% for diagnosis in patient.diagnoses %}
+            <div class="card bg-success">
+                <uL>
+                    <li>
+                        <h5><b>Diagnosis</b></h5>
+                        <p>{{ diagnosis.name }}</p>
+                    </li>
+                    <li>
+                        <h5><b>Explanation</b></h5>
+                        <p>{{ diagnosis.explanation }}</p>
+                    </li>
+                    <li>
+                        <h5><b>Diagnosed By</b></h5>
+                        <p>{{ diagnosis.diagnosed_by }}</p>
+                    </li>
+                </uL>
+            </div>
+            {% endfor %}
+            <a href="{{ url_for("change_doctor", username=patient.username) }}"
+               class="btn btn-success" role="button">Change Doctor</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
